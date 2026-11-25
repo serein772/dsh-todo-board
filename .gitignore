@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+
+# Third-party handwritten font: personal licence only, not redistributable.
+# Kept on the author's machine, never published.
+fonts/WoaiwwwShouxieti.ttf

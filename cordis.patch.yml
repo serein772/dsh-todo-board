@@ -1,0 +1,5 @@
+# One Host row: its `dsh.client` declaration in package.json makes the web app
+# load ./client.js as the browser half, which draws the panel and the dock.
+- insert:
+    - id: todo-board
+      name: 'dsh-todo-board'

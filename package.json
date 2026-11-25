@@ -1,0 +1,58 @@
+{
+  "name": "dsh-todo-board",
+  "version": "1.2.0",
+  "description": "A sticky-note to-do board for the DSH Web GUI: a month calendar of paper notes, a Pomodoro focus timer, and a pending summary above the composer.",
+  "type": "module",
+  "icon": "icon.svg",
+  "license": "MIT",
+  "author": "serein772",
+  "homepage": "https://github.com/serein772/dsh-todo-board#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serein772/dsh-todo-board.git"
+  },
+  "bugs": {
+    "url": "https://github.com/serein772/dsh-todo-board/issues"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "todo",
+    "tasks",
+    "pomodoro",
+    "calendar"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "README.en.md",
+    "LICENSE",
+    "fonts/ChenYuluoyan-Thin.ttf",
+    "fonts/LICENSE.txt",
+    "fonts/NOTICE.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  }
+}
