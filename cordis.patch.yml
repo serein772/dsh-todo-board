@@ -2,4 +2,4 @@
 # load ./client.js as the browser half, which draws the panel and the dock.
 - insert:
     - id: todo-board
-      name: 'dsh-todo-board'
+      name: '@serein1178/dsh-todo-board'

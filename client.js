@@ -24,7 +24,7 @@
  * plugin and break the whole bundle with "Identifier … has already been declared".
  */
 ;(() => {
-const MODULE_ID = 'dsh-todo-board'
+const MODULE_ID = '@serein1178/dsh-todo-board'
 
 window.__ModuleLoader__.load({
   id: MODULE_ID,
