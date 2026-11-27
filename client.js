@@ -16,6 +16,7 @@
  * vendored copy cannot desynchronise the two halves. The constant is only a
  * fallback for a combo script that serves several rows at one URL.
  */
+;(() => {
 const resolveModuleId = () => {
   const FALLBACK = 'dsh-todo-board'
   try {
@@ -3753,3 +3754,4 @@ window.__ModuleLoader__.load({
     }
   },
 })
+})()

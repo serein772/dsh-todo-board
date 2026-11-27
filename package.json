@@ -1,6 +1,6 @@
 {
   "name": "dsh-todo-board",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A sticky-note to-do board for the DSH Web GUI: a month calendar of paper notes, a Pomodoro focus timer, and a pending summary above the composer.",
   "type": "module",
   "icon": "icon.svg",
