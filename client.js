@@ -10,37 +10,24 @@
  * so it survives reloads, restarts, port changes and other browsers.
  */
 /**
- * The module id has to equal the package name the Host put in its boot graph;
- * register under any other id and the browser half silently never mounts.
- * Resolve it from the graph row whose URL is this very script, so a rename or a
- * vendored copy cannot desynchronise the two halves. The constant is only a
- * fallback for a combo script that serves several rows at one URL.
+ * `window.__ModuleLoader__.load({ id })` must use the package name literally —
+ * that is the browser module identity the Host composes into its boot graph.
+ *
+ * Do not try to derive it from `document.currentScript.src`: a combo script is
+ * served from ONE url for many rows (`/plugins/??a/client.js,b/client.js&rev=…`),
+ * so a url match returns whichever row comes first and the module registers
+ * under that row's id instead of its own. The other half then fails to arrive
+ * and the page reports "…does not register <package>".
+ *
+ * The IIFE matters too: combo entries are concatenated into one scope, so any
+ * top-level `const` here would collide with a same-named helper in another
+ * plugin and break the whole bundle with "Identifier … has already been declared".
  */
 ;(() => {
-const resolveModuleId = () => {
-  const FALLBACK = 'dsh-todo-board'
-  try {
-    const boot = window.__DSH_BOOT__
-    const entries = Array.isArray(boot) ? boot : boot && Array.isArray(boot.entries) ? boot.entries : []
-    const self = typeof document === 'undefined' ? null : document.currentScript
-    if (typeof self?.src !== 'string' || !self.src) return FALLBACK
-    const absolute = (url) => {
-      try {
-        return new URL(url, document.baseURI).href
-      } catch {
-        return null
-      }
-    }
-    const own = absolute(self.src)
-    const row = entries.find((entry) => entry && typeof entry.url === 'string' && absolute(entry.url) === own)
-    return row && typeof row.id === 'string' && row.id ? row.id : FALLBACK
-  } catch {
-    return FALLBACK
-  }
-}
+const MODULE_ID = 'dsh-todo-board'
 
 window.__ModuleLoader__.load({
-  id: resolveModuleId(),
+  id: MODULE_ID,
   factory(require) {
     const React = require('react')
     const h = React.createElement
